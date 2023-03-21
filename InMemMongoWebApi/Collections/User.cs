@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace InMemMongoWebApi.Collections
 {
-	public class Person
+	public class User
 	{
 		[BsonId]
 		[BsonRepresentation(BsonType.ObjectId)]
@@ -14,8 +14,5 @@ namespace InMemMongoWebApi.Collections
 
 		[BsonElement("age")]
 		public int Age { get; set; }
-
-		[BsonElement("phonenumbers")]
-		public List<string> PhoneNumbers { get; set; }
 	}
 }

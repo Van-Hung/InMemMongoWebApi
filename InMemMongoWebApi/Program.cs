@@ -19,7 +19,7 @@ builder.Services.AddSingleton<IMongoDatabase>(options => {
 	var client = new MongoClient(settings.ConnectionString);
 	return client.GetDatabase(settings.DatabaseName);
 });
-builder.Services.AddSingleton<IPersonRepository, PersonRepository>();
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
