@@ -51,7 +51,8 @@ namespace InMemMongoWebApi.Test
 			var result = await _userRepository.GetAllAsync();
 
 			// Assert
-			Assert.Equal(_users.Count, result.Count());
+			result.ShouldNotBeNull();
+			result.Count.ShouldBe(_users.Count);
 		}
 	}
 }
