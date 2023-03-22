@@ -1,5 +1,6 @@
 ﻿using InMemMongoWebApi.Collections;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace InMemMongoWebApi.Repositories
 {
@@ -16,6 +17,12 @@ namespace InMemMongoWebApi.Repositories
 		{
 			return await ((await _userCollection.FindAsync(_ => true)).ToListAsync());
 			//return await _userCollection.Find(_ => true).ToListAsync();
+		}
+
+		public async Task<List<User>> GetAllAsyncByLinq()
+		{
+			var queryableUserCollection = _userCollection.AsQueryable().Where(x => true);
+			return await queryableUserCollection.ToListAsync();
 		}
 
 		public async Task<User> GetByIdAsync(string id)
