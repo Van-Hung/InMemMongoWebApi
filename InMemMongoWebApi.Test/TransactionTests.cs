@@ -36,7 +36,7 @@ namespace InMemMongoWebApi.Test
 						(s, ct) =>
 						{
 							_userRepository.CreateNewUserAsync(new User { Id = "6419c7aeffeeb0eeb8f9e5d6", Name = "John", Age = 40 }).GetAwaiter().GetResult();
-							_userRepository.CreateNewUserAsync(new User { Id = "6419c7a5f23ddc04163af507", Name = "Mithril", Age = 350 }).GetAwaiter().GetResult();
+							_userRepository.CreateNewUserAsync(new User { Id = "6419c7a5f23ddc04163af507", Name = "Mithril", Age = 35 }).GetAwaiter().GetResult();
 
 							return "Inserted 2 documents into the same collection";
 						},

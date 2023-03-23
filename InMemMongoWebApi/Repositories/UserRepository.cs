@@ -30,6 +30,13 @@ namespace InMemMongoWebApi.Repositories
 			return await _userCollection.Find(_ => _.Id == id).FirstOrDefaultAsync();
 		}
 
+		public async Task<List<User>> GetUsersByNamePrefix(string namePrefix)
+		{
+			namePrefix = namePrefix.ToLower();
+			var result = await _userCollection.FindAsync(x => x.Name.ToLower().StartsWith(namePrefix));
+			return await result.ToListAsync();
+		}
+
 		public async Task CreateNewUserAsync(User newUser)
 		{
 			await _userCollection.InsertOneAsync(newUser);
