@@ -1,8 +1,26 @@
+using InMemMongoWebApi;
 using InMemMongoWebApi.Models;
 using InMemMongoWebApi.Repositories;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Retrieve the connection string
+string connectionString = builder.Configuration.GetConnectionString("AppConfig");
+
+if (connectionString.StartsWith("Read-from-local"))
+{
+	// read from local file
+}
+else
+{
+	// Load configuration from Azure App Configuration
+	builder.Configuration.AddAzureAppConfiguration(connectionString);
+
+}
+
+// Bind configuration "TestApp:Settings" section to the Settings object
+builder.Services.Configure<Settings>(builder.Configuration.GetSection("TestApp:Settings"));
 
 // Add services to the container.
 

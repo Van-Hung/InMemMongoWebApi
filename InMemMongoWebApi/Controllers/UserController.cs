@@ -1,6 +1,7 @@
 ﻿using InMemMongoWebApi.Collections;
 using InMemMongoWebApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace InMemMongoWebApi.Controllers
 {
@@ -9,10 +10,12 @@ namespace InMemMongoWebApi.Controllers
 	public class UserController : ControllerBase
 	{
 		private readonly IUserRepository _userRepository;
+		public Settings Settings { get; }
 
-		public UserController(IUserRepository userRepository)
+		public UserController(IUserRepository userRepository, IOptionsSnapshot<Settings> options)
 		{
 			_userRepository = userRepository;
+			Settings = options.Value;
 		}
 	
 		[HttpGet]
